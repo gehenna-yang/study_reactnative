@@ -1,6 +1,6 @@
 const colors = {
   WHITE: '#ffffff', // dark mode black color
-  BLACK: '#161616', // dark mode white color
+  BLACK: '#000000', // dark mode white color
   PINK_200: '#FAE2E9',
   PINK_400: '#EC87A5',
   PINK_500: '#BF5C79',
@@ -16,6 +16,7 @@ const colors = {
   DM_GRAY_100: '#202124',
   DM_GRAY_200: '#3C4043',
   DM_GRAY_300: '#5E5E5E',
+  DM_WHITE: '#161616',
 };
 
 export {colors};
