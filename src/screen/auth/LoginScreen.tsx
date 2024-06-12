@@ -1,53 +1,46 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import InputField from '../../components/InputField';
+import CustomButton from '../../components/CustomButton';
+import useForm from '../../hooks/useForm';
+import {validateLogin} from '../../utils';
 
 function LoginScreen() {
-  const [values, setValue] = useState({
-    email: '',
-    pwd: '',
-  });
-  const [touched, setTouched] = useState({
-    email: false,
-    pwd: false,
+  const login = useForm({
+    initialValue: {email: '', pwd: ''},
+    validate: validateLogin,
   });
 
-  const handleChangeText = (name: string, text: string) => {
-    setValue({
-      ...values,
-      [name]: text,
-    });
+  const handleSubmit = () => {
+    console.log('values: ', login.values);
+    console.log('values2: ', login);
   };
 
-  const handleBlur = (name: string) => {
-    setTouched({
-      ...touched,
-      [name]: true,
-    });
-  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
         <InputField
           placeholder="이메일"
-          error={'이메일을 입력하세요'}
+          error={login.errors.email}
           inputMode="email"
-          touched={touched.email}
-          value={values.email}
-          onChangeText={text => handleChangeText('email', text)}
-          onBlur={() => handleBlur('email')}
+          touched={login.touched.email}
+          {...login.getTextInputProps('email')}
         />
         <InputField
           placeholder="비밀번호"
-          error={'비밀번호를 입력하세요'}
-          touched={touched.pwd}
+          error={login.errors.pwd}
           secureTextEntry
-          value={values.pwd}
-          onChangeText={text => handleChangeText('pwd', text)}
-          onBlur={() => handleBlur('pwd')}
+          touched={login.touched.pwd}
+          {...login.getTextInputProps('pwd')}
         />
       </View>
+      <CustomButton
+        label="로그인"
+        variant="filled"
+        size="large"
+        onPress={handleSubmit}
+      />
     </SafeAreaView>
   );
 }
@@ -59,6 +52,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     gap: 20,
+    marginBottom: 30,
   },
 });
 
