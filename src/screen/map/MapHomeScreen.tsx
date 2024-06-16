@@ -1,17 +1,21 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import useAuth from '../../hooks/queries/useAuth';
+import {Button, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import useAuth from '~/hooks/queries/useAuth';
 
 function MapHomeScreen() {
   const {logoutMutation} = useAuth();
   return (
-    <View>
-      <Text>맵 스크린</Text>
-      <Button title="로그아웃" onPress={() => logoutMutation.mutate(null)} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text>맵 스크린</Text>
+        <Button title="로그아웃" onPress={() => logoutMutation.mutate(null)} />
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {},
+});
 
 export default MapHomeScreen;

@@ -1,10 +1,9 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import LoginScreen from '../../screen/auth/LoginScreen';
-import AuthHomeScreen from '../../screen/auth/AuthHomeScreen';
-import {authNavigation} from '../../constants';
-import SignupScreen from '../../screen/auth/SignupScreen';
-import {StyleSheet} from 'react-native';
+import LoginScreen from '~/screen/auth/LoginScreen';
+import AuthHomeScreen from '~/screen/auth/AuthHomeScreen';
+import {authNavigation} from '~/constants';
+import SignupScreen from '~/screen/auth/SignupScreen';
 
 export type AuthStackParamList = {
   [authNavigation.AUTH_HOME]: undefined;
@@ -51,7 +50,5 @@ function AuthStackNavigator() {
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default AuthStackNavigator;
